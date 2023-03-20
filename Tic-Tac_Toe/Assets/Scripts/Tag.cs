@@ -9,14 +9,12 @@ public class Tag : MonoBehaviour
     [SerializeField] Sprite circleSprite;
     [SerializeField] Sprite crossSprite;
     bool isCircle = true;
-    void Start()
-    {
+    void Start(){
         positions = FindObjectOfType<PositionsManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void ChangeSign()
-    {
+    public void ChangeSign(){
         // Changes the tag sign every time it is placed
         if(isCircle){
             // Circle is placed
@@ -25,8 +23,7 @@ public class Tag : MonoBehaviour
             spriteRenderer.sprite = crossSprite;
             isCircle = false;
         }
-        else
-        {
+        else{
             // Cross is placed
             positions.isCross();
             // Change to circle

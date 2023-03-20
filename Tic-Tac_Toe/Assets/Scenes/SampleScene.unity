@@ -353,7 +353,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbfbdf12b6263c24e88f4889714e0de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionsArray: []
+  CircleNumbers: 
+  CrossNumbers: 
 --- !u!4 &948683577
 Transform:
   m_ObjectHideFlags: 0

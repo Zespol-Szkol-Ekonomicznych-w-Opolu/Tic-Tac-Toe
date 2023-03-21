@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Tag : MonoBehaviour
 {
-    PositionsManager positions;
-    SpriteRenderer spriteRenderer;
+    [SerializeField] AudioSource audioSource;
     [SerializeField] Sprite circleSprite;
     [SerializeField] Sprite crossSprite;
+    PositionsManager positions;
+    SpriteRenderer spriteRenderer;
     bool isCircle = true;
     void Start(){
         positions = FindObjectOfType<PositionsManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void ChangeSign(){
@@ -19,6 +21,7 @@ public class Tag : MonoBehaviour
         if(isCircle){
             // Circle is placed
             positions.isCircle();
+            audioSource.Play();
             // Change to cross
             spriteRenderer.sprite = crossSprite;
             isCircle = false;
@@ -26,6 +29,7 @@ public class Tag : MonoBehaviour
         else{
             // Cross is placed
             positions.isCross();
+            audioSource.Play();
             // Change to circle
             spriteRenderer.sprite = circleSprite;
             isCircle = true;

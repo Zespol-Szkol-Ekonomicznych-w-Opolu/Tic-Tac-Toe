@@ -10,15 +10,21 @@ public class PositionsManager : MonoBehaviour
     Vector2 position;
     BoxCollider2D clickField;
     int tagNumber;
+    WinManager winManager;
+    bool somebodyWin;
 
     void Start(){
         theTag = FindObjectOfType<Tag>();
         clickField = GetComponent<BoxCollider2D>();
+        winManager = FindObjectOfType<WinManager>();
+        winManager.gameObject.SetActive(false);
     }
 
     public void SetPositions(Vector2 clickedPosition, int clickedNumber){
+        // Don't allow to place tags when somebody has won
+        if(somebodyWin){return;}
+        // Sets position of the tag to clicked position
         tagNumber = clickedNumber;
-        // Sets position of the tag to clicked positions
         Instantiate<Tag>(theTag,clickedPosition,Quaternion.identity);
         theTag.ChangeSign();
     }
@@ -34,7 +40,7 @@ public class PositionsManager : MonoBehaviour
     }
 
     void CheckForWin(List<int> tagNumbers){
-        // Check if that symbol won
+        // Check if current symbol has won
 
         // Horizontal
         if(tagNumbers.Contains(1) && tagNumbers.Contains(2) && tagNumbers.Contains(3)){
@@ -66,11 +72,14 @@ public class PositionsManager : MonoBehaviour
     }
 
     void YouWin(List<int> tagNumbers){
+        somebodyWin = true;
+        // Activate suitable win screen
+        winManager.gameObject.SetActive(true);
         if(tagNumbers == CircleNumbers){
-            Debug.Log("Circle Win!");
+            winManager.CircleWin();
         }
         if(tagNumbers == CrossNumbers){
-            Debug.Log("Cross Win!");
+            winManager.CrossWin();
         }
     }
 }

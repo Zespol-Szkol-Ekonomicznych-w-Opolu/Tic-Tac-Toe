@@ -1,2 +1,2 @@
 # Tic-Tac-Toe
- Kółko i krzyżyk na kółko
+ Prosta gra w kółko i krzyżyk

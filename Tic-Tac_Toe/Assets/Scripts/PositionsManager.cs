@@ -12,6 +12,7 @@ public class PositionsManager : MonoBehaviour
     int tagNumber;
     WinManager winManager;
     bool somebodyWin;
+    int positionsAmount = 9;
 
     void Start(){
         theTag = FindObjectOfType<Tag>();
@@ -24,6 +25,7 @@ public class PositionsManager : MonoBehaviour
         // Don't allow to place tags when somebody has won
         if(somebodyWin){return;}
         // Sets position of the tag to clicked position
+        positionsAmount--;
         tagNumber = clickedNumber;
         Instantiate<Tag>(theTag,clickedPosition,Quaternion.identity);
         theTag.ChangeSign();
@@ -45,30 +47,49 @@ public class PositionsManager : MonoBehaviour
         // Horizontal
         if(tagNumbers.Contains(1) && tagNumbers.Contains(2) && tagNumbers.Contains(3)){
             YouWin(tagNumbers);
+            return;
         }
         if(tagNumbers.Contains(4) && tagNumbers.Contains(5) && tagNumbers.Contains(6)){
             YouWin(tagNumbers);
+            return;
         }
         if(tagNumbers.Contains(7) && tagNumbers.Contains(8) && tagNumbers.Contains(9)){
             YouWin(tagNumbers);
+            return;
         }
         // Vertical
         if(tagNumbers.Contains(1) && tagNumbers.Contains(4) && tagNumbers.Contains(7)){
             YouWin(tagNumbers);
+            return;
         }
         if(tagNumbers.Contains(2) && tagNumbers.Contains(5) && tagNumbers.Contains(8)){
             YouWin(tagNumbers);
+            return;
         }
         if(tagNumbers.Contains(3) && tagNumbers.Contains(6) && tagNumbers.Contains(9)){
             YouWin(tagNumbers);
+            return;
         }
         // Cross
         if(tagNumbers.Contains(1) && tagNumbers.Contains(5) && tagNumbers.Contains(9)){
             YouWin(tagNumbers);
+            return;
         }
         if(tagNumbers.Contains(3) && tagNumbers.Contains(5) && tagNumbers.Contains(7)){
             YouWin(tagNumbers);
+            return;
         }
+
+        // Checks for draw
+        if(positionsAmount == 0){
+            Draw();
+        }
+    }
+
+    void Draw(){
+        // Activate draw
+        winManager.gameObject.SetActive(true);
+        winManager.Draw();
     }
 
     void YouWin(List<int> tagNumbers){

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class WinManager : MonoBehaviour
 {
+    [SerializeField] AudioClip drawSound;
     [SerializeField] AudioClip playAgainSound;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioSource audioSource;
@@ -45,5 +46,13 @@ public class WinManager : MonoBehaviour
     public void ExitGame(){
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void Draw(){
+        // Show draw screen
+        winText.text = "Draw!";
+        tagImg.GetComponent<Image>().enabled = false;
+        audioSource.clip = drawSound;
+        audioSource.Play();
     }
 }

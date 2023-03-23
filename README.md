@@ -1,2 +1,2 @@
-# Tic-Tac-Toe
+# Tic_Tac_Toe
  Prosta gra w kółko i krzyżyk
